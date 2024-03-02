@@ -194,3 +194,12 @@ spyEls.forEach(function (spyEl) {
 | \&nbsp; |   | Non Breaking SPace | 줄바꿈 없는 공백(띄어쓰기) |
 | \&copy; | &copy; | COPYright    |   |
 더 많은 html 특수문자는 https://dev.w3.org/html5/html-author/charref
+
+
+#### 그 밖의 내용
+ * git config --global --list : 깃의 전역 환경 정보 보기
+ * git commit 시 자동 개행 변경 설정 바꾸기: Mac- git config --global core.autocrlf input  ,  Win - git config --global core.autocrlf true
+ * 이미 추적중인 파일을 버전 관리 목록에서 제거하기: `gitr rm -r --cached <file/folder>`
+ * git branch명 변경법: `git branch -M main` : 현재 브랜치를 'main'이란 명칭으로 변경 
+ * Mac일 경우 q를 눌러줘야 정보 보기 화면에서 빠져나옴.
+ * 터미널 화면 정리: Win- cls 입력, Mac- Ctrl+K 입력

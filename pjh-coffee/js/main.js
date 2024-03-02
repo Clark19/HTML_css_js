@@ -234,11 +234,12 @@ spyEls.forEach(function (spyEl) {
     .setClassToggle(spyEl, "show")
     .addTo(new ScrollMagic.Controller());
 });
-// 어떤 요소가 화면에 보이는지 감시하는 IntersectionObserver API 사용하여 ScrollMagic 라이브러리 대체하기
+// TODO 어떤 요소가 화면에 보이는지 감시하는 IntersectionObserver API 사용하여 ScrollMagic 라이브러리 대체하기
 // ** ]] 스크롤 애니메이션 */
 // Swiper.js도 vanilla JS로 대체하기
 
 /* Awards */
+// TODO Swiper.js 대신 vanilla JS로 구현이 용이 한지 체크하기.
 new Swiper(".awards .swiper", {
   autoplay: true,
   loop: true,
