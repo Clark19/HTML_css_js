@@ -200,6 +200,14 @@ spyEls.forEach(function (spyEl) {
  * git config --global --list : 깃의 전역 환경 정보 보기
  * git commit 시 자동 개행 변경 설정 바꾸기: Mac- git config --global core.autocrlf input  ,  Win - git config --global core.autocrlf true
  * 이미 추적중인 파일을 버전 관리 목록에서 제거하기: `gitr rm -r --cached <file/folder>`
- * git branch명 변경법: `git branch -M main` : 현재 브랜치를 'main'이란 명칭으로 변경 
+ * git branch명 변경법: `git branch -M main` : 현재 브랜치를 'main'이란 명칭으로 변경
+ ```bash
+ github 저장소 branch 토글 버튼 > 'View all branches' > 원하는 브랜치 우측의 '...'버튼 > 'Rename Branch' 눌러 이름 변경 후 로컬에서 아래 실행.
+ 
+ git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+ ```
  * Mac일 경우 q를 눌러줘야 정보 보기 화면에서 빠져나옴.
  * 터미널 화면 정리: Win- cls 입력, Mac- Ctrl+K 입력
