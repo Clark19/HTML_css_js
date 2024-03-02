@@ -13,7 +13,10 @@ searchInputEl.addEventListener("blur", function () {
 });
 
 // 페이지 스크롤에 따른 요소 제어
+// badge = 우측 팝업 광고
 const badgeEl = document.querySelector("header .badges");
+const toTopEl = document.querySelector("#to-top");
+
 const debounce = function (func, wait) {
   let timeoutId;
   return function () {
@@ -29,27 +32,13 @@ window.addEventListener(
     console.log(window.scrollY);
     if (window.scrollY > 500) {
       // 배지 숨기기
-      // badgeEl.style.display = "none";
-      badgeEl.style.opacity = 0;
-      setTimeout(function () {
-        badgeEl.style.visibility = "hidden";
-      }, 500);
-
-      // gsap.to(요소, 지속시간, 옵션);
-      // gsap.to(badgeEl, 0.6, {
-      //   opacity: 0,
-      //   display: "none",
-      // });
+      setVisible(badgeEl, false);
+      // 상단으로 이동 버튼 보이기
+      setVisible(toTopEl, true, 0);
     } else {
       // 배지 보이기
-      // badgeEl.style.display = "block";
-      badgeEl.style.visibility = "visible";
-      badgeEl.style.opacity = 1;
-
-      // gsap.to(badgeEl, 0.6, {
-      //   opacity: 1,
-      //   display: "block",
-      // });
+      setVisible(badgeEl, true);
+      setVisible(toTopEl, false, 100);
     }
   }, 500)
 );
@@ -69,13 +58,11 @@ const runMainBannerAinmation = () => {
       el.style.opacity = 1;
     }, 10); // 10ms의 지연은 대부분의 경우 충분합니다.
   };
+
   const fadeEls = document.querySelectorAll(".visual .fade-in");
   fadeEls.forEach(function (fadeEl, i) {
     fadeIn(fadeEl, 1, i);
-    // gsap.to(fadeEl, 1, {
-    //   delay: (i + 1) * 0.7,
-    //   opacity: 1,
-    // });
+    // gsap.to(fadeEl, 1, {delay: (i + 1) * 0.7, opacity: 1});
   });
 };
 runMainBannerAinmation();
@@ -127,6 +114,10 @@ promotionToggleBtn.addEventListener("click", function () {
  * 3. Web Animation API (el.animate()) 사용 => 순수 JS로 애니메이션을 구현할 때 가장 깔끔하고 쉬운 방법같아 보임.
  * 4. gsap.to() 사용 (GSAP 라이브러리는 외부 라이브러리임.)
  */
+const float1 = document.querySelector(".floating1");
+const float2 = document.querySelector(".floating2");
+const float3 = document.querySelector(".floating3");
+
 // 1. css 이용 방식
 function animateVerticalMovement(element, animationDuration, options) {
   const { animationDistanceY, infinite, delay, alternate, ease } = options; // Distance in pixels
@@ -151,37 +142,9 @@ function animateVerticalMovement(element, animationDuration, options) {
   // Append the style element to the document head
   document.head.appendChild(style);
 }
-const float1 = document.querySelector(".floating1");
-const float2 = document.querySelector(".floating2");
-const float3 = document.querySelector(".floating3");
-// 1. css 이용 방식
 animateVerticalMovement(float1, 1.5, {
   delay: 1,
   animationDistanceY: 15,
-  infinite: "infinite",
-  alternate: "alternate",
-  ease: "ease-in-out",
-});
-
-// 4. gsap.to() 사용 방식
-// gsap.to(".floating3", 2.5, {
-//   delay: 1.5,
-//   y: 20,
-//   repeat: -1,
-//   yoyo: true,
-//   ease: Power1.easeInOut,
-// });
-
-// animateVerticalMovement(float2, 2, {
-//   delay: 0.5,
-//   animationDistanceY: 15,
-//   infinite: "infinite",
-//   alternate: "alternate",
-//   ease: "ease-in-out",
-// });
-animateVerticalMovement(float3, 2.5, {
-  delay: 1.5,
-  animationDistanceY: 20,
   infinite: "infinite",
   alternate: "alternate",
   ease: "ease-in-out",
@@ -224,6 +187,15 @@ animateVerticalMovement(float3, 2.5, {
 // }
 // requestAnimationFrame(moveElement);
 
+// 1번 css 이용 방식과 비교용
+// animateVerticalMovement(float2, 2, {
+//   delay: 0.5,
+//   animationDistanceY: 15,
+//   infinite: "infinite",
+//   alternate: "alternate",
+//   ease: "ease-in-out",
+// });
+
 // 3. Web Animation API (el.animate()) 사용 방식
 float2.animate([{ transform: `translateY(${15}px)` }], {
   duration: 2000,
@@ -231,6 +203,23 @@ float2.animate([{ transform: `translateY(${15}px)` }], {
   iterations: Infinity,
   direction: "alternate",
   easing: "ease-in-out",
+});
+
+// 4. gsap.to() 사용 방법 예시
+// gsap.to(".floating3", 2.5, {
+//   delay: 1.5,
+//   y: 20,
+//   repeat: -1,
+//   yoyo: true,
+//   ease: Power1.easeInOut,
+// });
+
+animateVerticalMovement(float3, 2.5, {
+  delay: 1.5,
+  animationDistanceY: 20,
+  infinite: "infinite",
+  alternate: "alternate",
+  ease: "ease-in-out",
 });
 
 /** ! 스크롤 위치에 따른 애니메이션 [[ */
@@ -248,3 +237,41 @@ spyEls.forEach(function (spyEl) {
 // 어떤 요소가 화면에 보이는지 감시하는 IntersectionObserver API 사용하여 ScrollMagic 라이브러리 대체하기
 // ** ]] 스크롤 애니메이션 */
 // Swiper.js도 vanilla JS로 대체하기
+
+/* Awards */
+new Swiper(".awards .swiper", {
+  autoplay: true,
+  loop: true,
+  spaceBetween: 30,
+  slidesPerView: 5,
+  navigation: {
+    prevEl: ".awards .swiper-button-prev",
+    nextEl: ".awards .swiper-button-next",
+  },
+});
+
+// CopyRight Year
+const thisYear = document.querySelector(".this-year");
+thisYear.textContent = new Date().getFullYear();
+
+/** 페이지 최상단으로 이동 구현 */
+// 사용자가 스크롤을 할 때마다 버튼의 표시 여부를 결정하는 함수
+/** 웹 엘리먼트를 사라지게 하는 함수 = gsap.to() 대체용
+ * gsap.to(요소, 지속시간, 옵션); 코드를 대체하도록 Vanilla JS로 구현
+ * gsap.to(badgeEl, 0.6, {opacity: 0, display: "none"}); => setVisible(badgeEl, false);로 대체
+ * gsap.to(badgeEl, 0.6, {opacity: 1, display: "block"}); => setVisible(badgeEl, true);로 대체
+ */
+const setVisible = (el, visible, translateXCoord = 0) => {
+  el.style.visibility = visible ? "visible" : "hidden";
+  el.style.opacity = visible ? 1 : 0;
+  el.style.transform = `translateX(${translateXCoord}px)`; // 0px
+
+  // setTimeout(function () { // 스크롤시 말고 hover시 사라지게 할때 특정시간 후에 사라자게 해야 깜빡인 혆상이 안나타날때가 있다.
+  //   badgeEl.style.visibility = "hidden";
+  // }, 500);
+};
+
+toTopEl.addEventListener("click", function () {
+  // 페이지 최상단으로 부드럽게 스크롤
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
