@@ -75,6 +75,17 @@ img {
   color: #333;
   background-color: #fff;
 }
+.btn.btn--primary {
+  color: #fff;
+  background-color: #ea9926;
+  border: none;
+}
+.btn.btn--primary:hover {
+  background-color: #cc8823;
+}
+.btn.block {
+  width: 100%;
+}
 
 /** ! 스크롤 위치에 따른 애니메이션 [[ */
 /* Back to position */
