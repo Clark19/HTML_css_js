@@ -1,17 +1,3 @@
-const searchEl = document.querySelector(".search");
-const searchInputEl = searchEl.querySelector("input");
-searchEl.addEventListener("click", function () {
-  searchInputEl.focus();
-});
-searchInputEl.addEventListener("focus", function () {
-  searchEl.classList.add("focused");
-  searchInputEl.setAttribute("placeholder", "통합검색");
-});
-searchInputEl.addEventListener("blur", function () {
-  searchEl.classList.remove("focused");
-  searchInputEl.setAttribute("placeholder", "");
-});
-
 // 페이지 스크롤에 따른 요소 제어
 // badge = 우측 팝업 광고
 const badgeEl = document.querySelector("header .badges");
@@ -250,10 +236,6 @@ new Swiper(".awards .swiper", {
     nextEl: ".awards .swiper-button-next",
   },
 });
-
-// CopyRight Year
-const thisYear = document.querySelector(".this-year");
-thisYear.textContent = new Date().getFullYear();
 
 /** 페이지 최상단으로 이동 구현 */
 // 사용자가 스크롤을 할 때마다 버튼의 표시 여부를 결정하는 함수
