@@ -5,12 +5,8 @@
 
   * 책 버전의 유사 프로젝트 - '문이 있는 페이지 클론' - https://github.com/ParkYoungWoong/door-selector
 
-   [강의록pdf (구글 드라이브)](https://drive.google.com/file/d/1tKH_29HruwwdXxETpw9-XHZQTCGccnId/view?pli=1)
->[!info]- 한 번에 끝내는 프론트엔드 개발 강의 자료 PDF
->	<iframe src="https://drive.google.com/file/d/1tKH_29HruwwdXxETpw9-XHZQTCGccnId/preview?pli=1&amp;usp=embed_googleplus" frameborder="0" sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin allow-storage-access-by-user-activation" allowfullscreen="" style="position: relative; left: 0px; top: 40px; width: 500px; height: 400px; border-radius:1px; pointer-events: auto; background-color: rgb(25, 25, 25); "></iframe>
-
-<br>
-
+   [*강의록pdf (구글 드라이브)](https://drive.google.com/file/d/1tKH_29HruwwdXxETpw9-XHZQTCGccnId/view?pli=1)
+   
 
   ### 추가 설명:
   Fast Campus(패스트 캠퍼스) 내일배움카드 프론트엔드 종합반: "HTML&CSS, JS, React" 온라인 강의에서
