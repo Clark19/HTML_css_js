@@ -1,8 +1,16 @@
-# pjh-coffee : Heropy Coffee 클론 실습한 내용
- * 'Hello IT 프론트엔드 개발을 시작하려고 해, 입문편, (박영웅 저)'에 수록. 패캠 국비지원 'React_Redux로 시작하는 웹 프로그래밍' 인강에도 있는 내용.
- * 원본 저장소 - https://github.com/ParkYoungWoong/heropy-coffee
+# [ pjh-coffee ] : Heropy Coffee 클론 실습한 내용
 
-## 원본 강의 내용과 다르게 내가 변경했거나, 주목할 만한 내용.
+* 'Hello IT 프론트엔드 개발을 시작하려고 해, 입문편, (박영웅 저)'에서 '커피전문점 사이트 클론 부분'
+* 패캠 국비지원 'React_Redux로 시작하는 웹 프로그래밍' 인강에도 있는 내용.
+
+* 코드 원본 저장소
+	- [HIT! 프로젝트 실습 2] 커피 전문점 웹사이트 코드 저장소(저자)
+		- 헤로피 커피: [https://github.com/ParkYoungWoong/heropy-coffee](https://github.com/ParkYoungWoong/heropy-coffee)
+	- 스타벅스: [https://github.com/ParkYoungWoong/starbucks-vanilla-app](https://github.com/ParkYoungWoong/starbucks-vanilla-app)
+
+*  [강의록pdf (구글 드라이브)](https://drive.google.com/file/d/1tKH_29HruwwdXxETpw9-XHZQTCGccnId/view?pli=1)
+
+## < 원본 강의 내용과 다르게 내가 변경했거나, 주목할 만한 내용 >
 ### * 웹 엘리먼트를 사라지게 하는 함수 구현 - GASP.to() 대체
  - gsap.to(요소, 지속시간, 옵션)라는 함수를 대체하도록 Vanilla JS로 다음과 같이 구현
 ```js
@@ -164,50 +172,58 @@ gsap.to(".floating3", 2.5, {
  ```
 
 
-### 스크롤 위치에 따른 애니메이션 구현시 GSAP와 ScrollToPlugin.js(GSAP의 플러그인)을 이용하여 구현한 것을 대체
+### * 스크롤 위치에 따른 애니메이션 구현시 GSAP와 ScrollToPlugin.js(GSAP의 플러그인)을 이용하여 구현한 것을 대체
  * 페이지 최상단 이동시 사용한 gsap.to(window, .6, {scrollTo: 0}) 라는 코드를 window.scrollTo({top:0, behavior: "smooth"})로 수정
  * ScrollMagic 라이브러리 이용하던 부분 vanilla JS로 수정 할 것!
   - 즉, 어떤 요소가 화면에 보이는지 감시하는 기능을 IntersectionObserver API 사용하여 ScrollMagic 라이브러리를 대체하기
-```js
-const spyEls = document.querySelectorAll("section.scroll-spy");
-spyEls.forEach(function (spyEl) {
-  new ScrollMagic.Scene({
-    // 감시할 장면(Scene)을 추가
-    triggerElement: spyEl, // 보여짐 여부를 감시할 요소를 지정
-    triggerHook: 0.8, // 뷰포트의 80% 지점에서 보여짐 여부 감시
-  })
-    .setClassToggle(spyEl, "show")
-    .addTo(new ScrollMagic.Controller());
-});
-```
+    ```js
+    const spyEls = document.querySelectorAll("section.scroll-spy");
+    spyEls.forEach(function (spyEl) {
+      new ScrollMagic.Scene({
+        // 감시할 장면(Scene)을 추가
+        triggerElement: spyEl, // 보여짐 여부를 감시할 요소를 지정
+        triggerHook: 0.8, // 뷰포트의 80% 지점에서 보여짐 여부 감시
+      })
+        .setClassToggle(spyEl, "show")
+        .addTo(new ScrollMagic.Controller());
+    });
+    ```
 
-### Swiper.js도 대체 용이한지 체크해 볼 것.
+### * Swiper.js도 대체 용이한지 체크해 볼 것.
 
-#### HTML 특수문자(HTML Character Entities)는 특정 글자를 대신 표시하는 데 사용됩니다. 표기는 &copy;와 같이 엠퍼센드(&) 기호로 시작해서 세미콜론(;) 기호로 종료합니다.
+#### * HTML 특수문자(HTML Character Entities)는 특정 글자를 대신 표시하는 데 사용됩니다. 표기는 &copy;와 같이 엠퍼센드(&) 기호로 시작해서 세미콜론(;) 기호로 종료합니다.
 \<div\>라는 글자를 출력하려면 \&lt;div\&gt;라고 작성해야 함.
  * 자주 사용되는 HTML 특수문자
 
-| HTML 특수문자 |   출력  |     약어     |     설명    |
-|:-----------:|:-------------:|:------:|:------:|
-| \&lt; | < | Less Than   |    |
-| \&gt; | > |  Greater Than  |   |
-| \&nbsp; |   | Non Breaking SPace | 줄바꿈 없는 공백(띄어쓰기) |
-| \&copy; | &copy; | COPYright    |   |
-더 많은 html 특수문자는 https://dev.w3.org/html5/html-author/charref
+  | HTML 특수문자 |   출력  |     약어     |     설명    |
+  |:-----------:|:-------------:|:------:|:------:|
+  | \&lt; | < | Less Than   |    |
+  | \&gt; | > |  Greater Than  |   |
+  | \&nbsp; |   | Non Breaking SPace | 줄바꿈 없는 공백(띄어쓰기) |
+  | \&copy; | &copy; | COPYright    |   |
+  
+  더 많은 html 특수문자는 https://dev.w3.org/html5/html-author/charref
 
 
-#### 그 밖의 내용
+#### * 그 밖의 내용
  * git config --global --list : 깃의 전역 환경 정보 보기
  * git commit 시 자동 개행 변경 설정 바꾸기: Mac- git config --global core.autocrlf input  ,  Win - git config --global core.autocrlf true
  * 이미 추적중인 파일을 버전 관리 목록에서 제거하기: `gitr rm -r --cached <file/folder>`
  * git branch명 변경법: `git branch -M main` : 현재 브랜치를 'main'이란 명칭으로 변경
- ```bash
- github 저장소 branch 토글 버튼 > 'View all branches' > 원하는 브랜치 우측의 '...'버튼 > 'Rename Branch' 눌러 이름 변경 후 로컬에서 아래 실행.
- 
- git branch -m master main
-git fetch origin
-git branch -u origin/main main
-git remote set-head origin -a
- ```
+    ```bash
+    github 저장소 branch 토글 버튼 > 'View all branches' > 원하는 브랜치 우측의 '...'버튼 > 'Rename Branch' 눌러 이름 변경 후 로컬에서 아래 실행.
+    
+    git branch -m master main
+    git fetch origin
+    git branch -u origin/main main
+    git remote set-head origin -a
+    ```
  * Mac일 경우 q를 눌러줘야 정보 보기 화면에서 빠져나옴.
  * 터미널 화면 정리: Win- cls 입력, Mac- Ctrl+K 입력
+
+
+ * css flex item들이 공간 동일하게 분배하는 방법 
+    ```css
+    flex-grow: 1; /* 각 플렉스 아이템의 증가 너비 비율을 1로 설정 */
+    flex-basis: 0; /* 공간 배분 전 기본 너비(flex-basis)는 기본값 auto가 아닌 0으로 지정해서 글자 길이에서 발생하는 너비차이를 해소 */
+    ```
